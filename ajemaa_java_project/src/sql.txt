@@ -1,0 +1,37 @@
+create table acteur(
+id_acteur int not null auto_increment,
+primary key(id_acteur),
+nom_acteur varchar(20),
+prenom_acteur varchar(20));
+
+create table realisateur(
+id_realisateur int not null auto_increment,
+primary key(id_realisateur),
+nom_realisateur varchar(20),
+prenom_realisateur varchar(20));
+
+create table societe_produc(
+id_societe int not null auto_increment,
+primary key(id_societe),
+nom_societe varchar(40));
+
+create table movie(
+id_film int not null auto_increment,
+nom_film varchar(20),
+annee int,
+id_realisateur int,
+possede int,
+estVue int,
+id_societe int,
+resum varchar(140),
+primary key(id_film),
+foreign key(id_societe) references societe_produc(id_societe),
+foreign key(id_realisateur) references realisateur(id_realisateur)
+);
+
+create table joue(
+id_film int,
+id_acteur int,
+primary key(id_film , id_acteur),
+foreign key(id_film) references movie(id_film),
+foreign key(id_acteur) references acteur(id_acteur));
